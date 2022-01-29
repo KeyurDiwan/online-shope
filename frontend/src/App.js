@@ -9,6 +9,7 @@ import Loader from './component/layout/Loader/Loader';
 import ProductDetails from './component/product/ProductDetails.js';
 import Products from './component/product/Products.js';
 import Search from './component/product/Search.js';
+import LoginSignUp from './component/User/LoginSignUp';
 
 
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/products" element={<Products/>}></Route>
         <Route path="/products/:id" element={<Products/>}></Route>
         <Route path="/search" element={<Search/>}></Route>
+        <Route path="/login" element={<LoginSignUp/>}></Route>
       
      
 
