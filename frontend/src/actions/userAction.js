@@ -33,29 +33,46 @@ export const login = ( email, password ) => async ( dispatch ) => {
     }
 }
 
-export const register = ( userData ) => ( dispatch ) => {
-    try {
-        dispatch( {
-            type: REGISTER_USER_REQUESTS,
-        } );
+// export const register = ( userData ) => ( dispatch ) => {
+//     try {
+//         dispatch( {
+//             type: REGISTER_USER_REQUESTS,
+//         } );
 
-        const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        const { data } = axios.post(
-            'http://localhost:4000/api/v1/register',
-            userData,
-            config
-        );
-        dispatch( {
-            type: REGISTER_USER_SUCCESS,
-            payload: data.user,
-        } );
-    } catch ( error ) {
-        dispatch( {
-            type: REGISTER_USER_FAIL,
-            payload: error.response.data.message,
-        } );
-    }
-}
+//         const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+//         const { data } = axios.post(
+//             'http://localhost:4000/api/v1/register',
+//             userData,
+//             config
+//         );
+//         dispatch( {
+//             type: REGISTER_USER_SUCCESS,
+//             payload: data.user,
+//         } );
+//     } catch ( error ) {
+//         dispatch( {
+//             type: REGISTER_USER_FAIL,
+//             payload: error.response.data.message,
+//         } );
+//     }
+// }
+
+export const register = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: REGISTER_USER_REQUESTS });
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    const { data } = await axios.post('http://localhost:4000/api/v1/register', userData, config);
+
+    dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({
+      type: REGISTER_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 
 // Clearing errors

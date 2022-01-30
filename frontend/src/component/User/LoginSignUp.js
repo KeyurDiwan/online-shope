@@ -342,7 +342,7 @@ const LoginSignUp = ( { history, location } ) => {
 
   const { name, email, password } = user;
 
-  const [avatar, setAvatar] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrWl3NFJnWwwjlBSSbNxJcQ2EpYbFhtX4M0Q&usqp=CAU");
+  const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrWl3NFJnWwwjlBSSbNxJcQ2EpYbFhtX4M0Q&usqp=CAU");
 
   const loginSubmit = (e) => {

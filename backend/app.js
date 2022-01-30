@@ -5,7 +5,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require( 'path' );
-// const fileUpload = require( "express-fileupload" );
+const fileUpload = require( "express-fileupload" );
 const errorMiddleware = require('./middleware/error.js')
 
 app.use(express.json());
@@ -13,9 +13,9 @@ app.use(express.json());
 // app.use(express.urlencoded({ extended: true}))
 
 app.use(cookieParser());
-// app.use(fileUpload());
-
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
+
 
 // import routes 
 const product = require('./routes/product.route.js')
