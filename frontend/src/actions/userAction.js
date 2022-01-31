@@ -6,9 +6,13 @@ import {
     REGISTER_USER_REQUESTS,
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAIL,
+    LOAD_USER_REQUESTS,
+    LOAD_USER_SUCCESS,
+    LOAD_USER_FAIL,
 } from '../constants/userConstant';
 import axios from 'axios';
 
+// Login 
 export const login = ( email, password ) => async ( dispatch ) => {
     try {
         dispatch( {
@@ -57,6 +61,7 @@ export const login = ( email, password ) => async ( dispatch ) => {
 //     }
 // }
 
+// Register
 export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUESTS });
@@ -74,6 +79,39 @@ export const register = (userData) => async (dispatch) => {
   }
 };
 
+
+// Load User
+export const loadUser = ( ) => async ( dispatch ) => {
+    try {
+        dispatch( {
+            type: LOAD_USER_REQUESTS,
+        } );
+
+     
+        const { data } = await axios.get('http://localhost:4000/api/v1/me');
+        dispatch( {
+            type: LOAD_USER_SUCCESS,
+            payload: data.user,
+        } );
+    } catch ( error ) {
+        dispatch( {
+            type: LOAD_USER_FAIL,
+            payload: error.response.data.message,
+        } );
+    }
+}
+
+// export const loadUser = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: LOAD_USER_REQUESTS });
+
+//     const { data } = await axios.get("https://localhost:4000/api/v1/me");
+
+//     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+//   } catch (error) {
+//     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+//   }
+// };
 
 // Clearing errors
 

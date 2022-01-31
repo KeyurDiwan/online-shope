@@ -10,18 +10,23 @@ import ProductDetails from './component/product/ProductDetails.js';
 import Products from './component/product/Products.js';
 import Search from './component/product/Search.js';
 import LoginSignUp from './component/User/LoginSignUp';
+import store from './store';
+import { loadUser } from './actions/userAction';
 
 
 
 
 function App() {
   useEffect( () => {
-  webfont.load( {
-    google: {
-      families: ['Roboto', 'Droid Sans', 'Chilanka']
-    }
-  } )
+    webfont.load( {
+      google: {
+        families: ['Roboto', 'Droid Sans', 'Chilanka']
+      }
+    } );
+      store.dispatch( loadUser() );
   }, [] );
+
+
   
 
   return (
